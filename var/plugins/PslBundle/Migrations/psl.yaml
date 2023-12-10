@@ -1,0 +1,14 @@
+# --------------------------------------------------------------------------------------------------
+# Generate a new migration with:
+# bin/console doctrine:migrations:diff --em=default --configuration=var/plugins/PslBundle/Migrations/psk.yaml
+#
+# Execute all migrations with:
+# bin/console kimai:bundle:tasks:install
+# bin/console doctrine:migrations:migrate --em=default --configuration=var/plugins/PslBundle/Migrations/psl.yaml
+# --------------------------------------------------------------------------------------------------
+
+table_storage:
+  table_name: bundle_migration_Psl
+
+migrations_paths:
+  PslBundle\Migrations: var/plugins/PslBundle/Migrations
