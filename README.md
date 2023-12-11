@@ -3,6 +3,13 @@
 This repository contains sample code demonstrating how the open source Kimai tracking solution could be integrated with a custom mobile application to meet the
 requirements of the San Fransisco Paid Sick Leave program.
 
+## Requirements
+
+This demo require docker to be installed locally. Instructions for installing can be found [here]
+(https://docs.docker.com/engine/install/).
+
+The demo was tested on OSX locally and might require some additional changes to run on a Windows machine.
+
 ## Running the demo
 
 In order to start the demo code, run the following in this directory:
@@ -37,3 +44,6 @@ The UI is optimized for use on a mobile device. The easiest way to simulate a mo
 - Bring up the developer tools with `⌥+⌘+I`
 - Bring up the mobile devices with `⇧+⌘+M`
 - Select the `iPhone 14 Pro Max`
+- Visit `http://localhost:3000`
+
+If you would like to see the Kimai admin screens, you can visit `http://localhost:8001` and enter `superadmin/changemeplease` for the login.
