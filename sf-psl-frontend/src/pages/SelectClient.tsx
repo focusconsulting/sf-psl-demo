@@ -1,6 +1,11 @@
 import { BodyText, Box, Flex } from "@sfgov/design-system/dist/react";
+import {
+  DocumentPointer,
+  useMakeCopilotActionable,
+  useMakeCopilotDocumentReadable,
+} from "@copilotkit/react-core";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
 import { PslClientData } from "../hooks/usePslAppData";
 
 type SelectClientProps = {
@@ -62,6 +67,35 @@ export const ActionCard = ({ name }: CustomerCardProps) => (
 );
 
 const SelectClient = ({ clients }: SelectClientProps) => {
+  const navigate = useNavigate();
+  const document: DocumentPointer = {
+    id: "select-client",
+    name: "Select Client",
+    sourceApplication: "SF PSL",
+    getContents: () => {
+      return clients.map((c) => c.customer.name).join("\n");
+    },
+  } as DocumentPointer;
+  const clientsContext = useMakeCopilotDocumentReadable(document);
+  useMakeCopilotActionable(
+    {
+      name: "navigate_to_person",
+      description: "",
+      argumentAnnotations: [
+        {
+          name: "clientName",
+          type: "string",
+          description: "The name of the client",
+          required: true,
+        },
+      ],
+      implementation: async (clientName: string) => {
+        const client = clients.find((c) => c.customer.name === clientName);
+        navigate(`/${client?.project.id}/task`);
+      },
+    },
+    []
+  );
   return (
     <Flex className="flex-col">
       <Box className="bg-slate-4">

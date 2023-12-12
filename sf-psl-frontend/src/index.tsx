@@ -1,4 +1,7 @@
 import App from "./App";
+import Chat from "./components/Chat";
+import { CopilotProvider } from "@copilotkit/react-core";
+import { CopilotSidebarUIProvider } from "@copilotkit/react-ui";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -7,6 +10,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <CopilotProvider chatApiEndpoint="http://localhost:3100/copilot">
+      <Chat>
+        <App />
+      </Chat>
+    </CopilotProvider>
   </React.StrictMode>
 );
