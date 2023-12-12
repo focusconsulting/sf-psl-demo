@@ -20,24 +20,24 @@ const PlaceHolderIcon = () => (
       fill="#E5E7EB"
       stroke="#5A7A92"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M8.5 11C9.88071 11 11 9.88071 11 8.5C11 7.11929 9.88071 6 8.5 6C7.11929 6 6 7.11929 6 8.5C6 9.88071 7.11929 11 8.5 11Z"
       fill="#E5E7EB"
       stroke="#5A7A92"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M14.526 12.6211L6 22.0001H18.133C19.1586 22.0001 20.1422 21.5926 20.8674 20.8674C21.5926 20.1422 22 19.1586 22 18.1331V18.0001C22 17.5341 21.825 17.3551 21.51 17.0101L17.48 12.6151C17.2922 12.4102 17.0637 12.2467 16.8092 12.135C16.5546 12.0234 16.2796 11.966 16.0017 11.9666C15.7237 11.9671 15.449 12.0256 15.1949 12.1383C14.9408 12.251 14.713 12.4154 14.526 12.6211Z"
       fill="#E5E7EB"
       stroke="#5A7A92"
       strokeWidth="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
