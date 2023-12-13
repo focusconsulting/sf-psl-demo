@@ -1,10 +1,11 @@
 import { Activity, Customer, TimeSheet } from "../api/models";
 import { Box, Button, Flex } from "@sfgov/design-system/dist/react";
+import { Link, useNavigate } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 
 import IconLeave from "../icons/IconLeave";
 import IconWork from "../icons/IconWork";
-import { Link } from "react-router-dom";
+import { useMakeCopilotActionable } from "@copilotkit/react-core";
 
 function calculateDuration(
   duration: number,
@@ -33,6 +34,19 @@ function Home({
   getTaskById,
   getCustomerByProjectId,
 }: HomeProps) {
+  const navigate = useNavigate();
+  useMakeCopilotActionable(
+    {
+      name: "record_hours",
+      description:
+        "Begin the record hours workflow by navigating to the select client page",
+      argumentAnnotations: [],
+      implementation: async (clientName: string) => {
+        navigate("/client");
+      },
+    },
+    []
+  );
   return (
     <Flex className="flex-col">
       <Flex className="flex-col bg-grey-1 p-24 text-slate-3 mb-28">

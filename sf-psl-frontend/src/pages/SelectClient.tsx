@@ -76,11 +76,12 @@ const SelectClient = ({ clients }: SelectClientProps) => {
       return clients.map((c) => c.customer.name).join("\n");
     },
   } as DocumentPointer;
-  const clientsContext = useMakeCopilotDocumentReadable(document);
+  useMakeCopilotDocumentReadable(document);
   useMakeCopilotActionable(
     {
-      name: "navigate_to_person",
-      description: "",
+      name: "navigate_to_client",
+      description:
+        "Select a client to perform work for and navigate to the lists of tasks that can be performed for that client",
       argumentAnnotations: [
         {
           name: "clientName",

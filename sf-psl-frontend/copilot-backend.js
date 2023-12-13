@@ -12,7 +12,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_TOKEN,
 });
 
-// Middleware to parse JSON data
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -32,7 +31,6 @@ app.post("/audio", upload.single("audio"), async (req, res) => {
   res.json(response);
 });
 
-// POST route
 app.post("/copilot", async (req, res) => {
   const forwardedProps = req.body;
 
@@ -47,14 +45,13 @@ app.post("/copilot", async (req, res) => {
       { name, arguments: args },
       createFunctionCallMessages
     ) => {
-      return undefined; // returning undefined to avoid sending any messages to the client when a function is called. Temporary, bc currently vercel ai sdk does not support returning both text and function calls -- although the API does support it.
+      return undefined;
     },
   });
 
   streamToResponse(stream, res);
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

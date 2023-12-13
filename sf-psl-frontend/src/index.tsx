@@ -1,7 +1,6 @@
 import App from "./App";
 import Chat from "./components/Chat";
 import { CopilotProvider } from "@copilotkit/react-core";
-import { CopilotSidebarUIProvider } from "@copilotkit/react-ui";
 import React from "react";
 import ReactDOM from "react-dom/client";
 

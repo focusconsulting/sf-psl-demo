@@ -1,5 +1,3 @@
-import { Box, Flex } from "@sfgov/design-system/dist/react";
-
 import { AudioRecorder } from "react-audio-voice-recorder";
 import axios from "axios";
 import { useCopilotChat } from "@copilotkit/react-core";
@@ -13,8 +11,7 @@ type AudioResponse = {
 };
 
 const Chat = ({ children }: ChatProps) => {
-  const { visibleMessages, append, reload, stop, isLoading, input, setInput } =
-    useCopilotChat({});
+  const { visibleMessages, append, isLoading } = useCopilotChat({});
 
   const postAudio = (blob: Blob) => {
     const formData = new FormData();
@@ -32,12 +29,13 @@ const Chat = ({ children }: ChatProps) => {
     <>
       {children}
       {visibleMessages.length > 0 && (
-        <div className="absolute bottom-48 right-8 bg-slate-1 h-80 p-20 rounded overflow-auto">
+        <div className="absolute bottom-48 right-8 bg-slate-1 h-100 p-20 rounded overflow-auto">
           <div>
-            {visibleMessages.map((message) => (
-              <div>{message.content}</div>
+            {visibleMessages.map((message, idx) => (
+              <div key={idx}>{message.content}</div>
             ))}
           </div>
+          {isLoading && <div>...</div>}
         </div>
       )}
       <div className="absolute bottom-8 right-8">
