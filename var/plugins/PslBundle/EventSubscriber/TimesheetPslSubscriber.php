@@ -2,25 +2,22 @@
 
 namespace KimaiPlugin\PslBundle\EventSubscriber;
 
-use App\Event\TimesheetUpdatePostEvent;
+use App\Event\TimesheetDeletePreEvent;
 use App\Event\TimesheetCreatePostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Activity\ActivityService;
-use Psr\Log\LoggerInterface;
 
 class TimesheetPslSubscriber implements EventSubscriberInterface
 {
 
-    public function __construct(private LoggerInterface $myLogger, private ActivityService $activityService)
+    public function __construct(private ActivityService $activityService)
     {
-        $this->logger = $myLogger;
         $this->leaveRatio = 1 / 30;
     }
 
     public static function getSubscribedEvents(): array
     {
         return [
-            TimesheetUpdatePostEvent::class => ['updatePslBalanceUpdate', 200],
             TimesheetCreatePostEvent::class => ['updatePslBalanceCreate', 200],
             TimesheetDeletePreEvent::class => ['handlePslBalanceDelete', 200]
         ];
@@ -29,7 +26,7 @@ class TimesheetPslSubscriber implements EventSubscriberInterface
 
     public function handlePslBalanceDelete(TimesheetDeletePreEvent $event): void
     {
-        $this->logger->critical($event->getTimesheet()->getProject()->getId());
+
 
         $recordDuration = $event->getTimesheet()->getDuration();
         $accruedSickLeave = $recordDuration * ($this->leaveRatio);
@@ -43,8 +40,6 @@ class TimesheetPslSubscriber implements EventSubscriberInterface
 
     public function updatePslBalanceCreate(TimesheetCreatePostEvent $event): void
     {
-        $this->logger->critical($event->getTimesheet()->getProject()->getId());
-
         $recordDuration = $event->getTimesheet()->getDuration();
         $accruedSickLeave = $recordDuration * ($this->leaveRatio);
 

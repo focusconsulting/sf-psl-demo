@@ -47,3 +47,7 @@ The UI is optimized for use on a mobile device. The easiest way to simulate a mo
 - Visit `http://localhost:3000`
 
 If you would like to see the Kimai admin screens, you can visit `http://localhost:8001` and enter `superadmin/changemeplease` for the login.
+
+## Resetting the demo
+
+The demo can be reset by removing all the docker resources with the following command `docker-compose down -v`
